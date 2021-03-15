@@ -44,7 +44,20 @@ mysql>show master status
 
 ```
 
+## binlog_format 
 
+```
+# STATEMENT 
+# The direct statement will be used 
+# e.g. INSERT INTO actors (first_name, last_name) values ('hans','mustermann')
+
+# MIXED
+# Server decides if to use STATEMENT or ROW for each sql - statement 
+
+# ROW 
+
+
+```
 
 ## Ref: 
 
