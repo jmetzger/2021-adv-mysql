@@ -71,6 +71,11 @@ mysqlbinlog -vvv -R -t --stop-never binlog.00000
 mysqlbinlog --stop-datetime="2021-03-15 15:23" binlog.000012
 ```
 
+## mysqlbinlog over multiple binlogs 
+
+```
+mysqlbinlog -vvv --stop-position=465 binlog.000010 binlog.000011 binlog.000012 > /usr/recovery.sql 
+```
 
 ## Ref: 
 
