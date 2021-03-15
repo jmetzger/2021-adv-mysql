@@ -9,6 +9,10 @@
   1. Configuration 
      * [Configuration of binlog](binlog.md) 
 
+  1. Variablen 
+     * [Use-Cases Variables](variables.md) 
+
+
   1. Performance related aspects of the MySQL architecture  
   
      * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
