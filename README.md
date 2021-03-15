@@ -4,7 +4,7 @@
 
   1. Installation 
      * [Installation with tar-bundle Centos 8/Redhat 8](/installation/mysql8-tar-bundle.md)
-
+     * [Login ohne passwort - mysql-client](mysql-login.md) 
 
   1. Performance related aspects of the MySQL architecture  
   
