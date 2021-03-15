@@ -10,6 +10,26 @@ log_bin
 sql_log_bin 
 ```
 
+## show master status 
+
+```
+# at which position is the master currently 
+show master status 
+```
+
+## when using slave potential master .... 
+
+```
+# on by default on mysql 8 
+# off by default on mysql 5.7 
+log_slaves_updates = on 
+
+# this must be on, if you want to use slave as master later
+# alle update from master are logged to binary of slave if log-bin=on 
+```
+
+
+
 ## Ref: 
 
 https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html
