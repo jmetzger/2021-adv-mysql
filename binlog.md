@@ -66,7 +66,11 @@ mysqlbinlog -vvv -R -t --stop-never binlog.00000
 
 ```
 
-## binlog 
+## mysqlbinlog with date 
+```
+mysqlbinlog --stop-datetime="2021-03-15 15:23" binlog.000012
+```
+
 
 ## Ref: 
 
