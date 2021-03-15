@@ -2,6 +2,8 @@
 
 ## Agenda 
 
+  1. Installation 
+     * 
   1. Performance related aspects of the MySQL architecture  
   
      * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
