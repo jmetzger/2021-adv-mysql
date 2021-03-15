@@ -1,4 +1,4 @@
-# MySQL performance training (individual) + 13.01. - 15.01.2021 
+# Advanced MySQL 15.03. - 19.03.2021 
 
 ## Agenda 
 
