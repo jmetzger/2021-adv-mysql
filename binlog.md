@@ -59,6 +59,8 @@ mysql>show master status
 
 ```
 
+## binlog 
+
 ## Ref: 
 
 https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html
