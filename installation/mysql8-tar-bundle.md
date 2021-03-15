@@ -24,9 +24,18 @@ tar xvf ../mysql-8.0.23-1.el8.x86_64.rpm-bundle.tar
 # Step 5: change into folder and install necessary files 
 # Install no debuginfo - packages 
 yum install mysql-community-{server,client,common,libs,client-plugins}-8*
+```
 
+## Start and retrieve password 
 
 ```
+systemctl start mysqld
+systemctl enable mysqld
+systemctl status mysqld
+grep 'temporary password' /var/log/mysqld.log
+```
+
+
 
 ## Ref: 
 
