@@ -6,8 +6,11 @@
      * [Installation with tar-bundle Centos 8/Redhat 8](/installation/mysql8-tar-bundle.md)
      * [Login ohne passwort - mysql-client](mysql-login.md) 
 
-  1. Configuration 
-     * [Configuration of binlog](binlog.md) 
+  1. Binlog - Management
+     * [Binlog](binlog.md) 
+
+  1. Backup and Restore 
+     * [Best Practice mysqldump](mysqldump.md) 
 
   1. Variablen 
      * [Use-Cases Variables](variables.md) 
