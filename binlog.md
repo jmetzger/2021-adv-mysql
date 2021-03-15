@@ -28,6 +28,22 @@ log_slaves_updates = on
 # alle update from master are logged to binary of slave if log-bin=on 
 ```
 
+## Disable binary logging 
+
+```
+# /etc/my.cnf 
+[mysqld]
+skip-log-bin 
+# or
+# disable-log-bin 
+
+## Restart
+# systemctl restart mysqld 
+# now master is empty
+mysql>show master status 
+
+```
+
 
 
 ## Ref: 
