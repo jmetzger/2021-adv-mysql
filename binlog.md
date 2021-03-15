@@ -59,6 +59,13 @@ mysql>show master status
 
 ```
 
+## Workaround for tail -f ;o) for binlog 
+
+```
+mysqlbinlog -vvv -R -t --stop-never binlog.00000
+
+```
+
 ## binlog 
 
 ## Ref: 
