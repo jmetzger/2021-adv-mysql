@@ -35,7 +35,14 @@ systemctl status mysqld
 grep 'temporary password' /var/log/mysqld.log
 ```
 
+## Change temporary password 
 
+```
+mysql -uroot -p 
+# important must fit password criteria
+# using P@ssw0rd for training purpose 
+alter user root@localhost identified by 'P@ssw0rd';
+```
 
 ## Ref: 
 
