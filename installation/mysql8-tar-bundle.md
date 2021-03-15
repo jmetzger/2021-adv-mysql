@@ -4,9 +4,10 @@
 
 ```
 # Step 1: Download bundle to your local machine 
-
+https://dev.mysql.com/downloads/mysql/
 
 # Step 2: Download winscp 
+# just google 
 
 # Step 3: Transfer bundle to server with winscp 
 
