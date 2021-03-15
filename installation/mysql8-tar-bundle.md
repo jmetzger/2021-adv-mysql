@@ -22,7 +22,9 @@ cd mysql-install
 tar xvf ../mysql-8.0.23-1.el8.x86_64.rpm-bundle.tar
 
 # Step 5: change into folder and install necessary files 
-yum install mysql-community-{server,client,common,libs}-*
+# Install no debuginfo - packages 
+yum install mysql-community-{server,client,common,libs,client-plugins}-8*
+
 
 ```
 
