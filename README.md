@@ -4,6 +4,7 @@
 
   1. Installation 
      * [Installation with tar-bundle Centos 8/Redhat 8](/installation/mysql8-tar-bundle.md)
+     * [Installation from centos8/centos7](/installation/repo.md)
      * [Login ohne passwort - mysql-client](mysql-login.md) 
 
   1. Configuration 
