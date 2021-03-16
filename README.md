@@ -25,6 +25,9 @@
   1. MariaDB vs. MySQL 
      * [Comparing MySQL vs. MariaDB](mysql-vs-maridb.md) 
 
+  1. Performance (InnoDB) 
+     * [Important Configuration Settings-Innodb](innodb-settings.md)
+
   1. Performance related aspects of the MySQL architecture  
   
      * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
