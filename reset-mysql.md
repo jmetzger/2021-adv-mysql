@@ -13,3 +13,9 @@ restorecon -r /var/lib/mysql
 # start server 
 systemctl start mysqld 
 ```
+
+## Set root user 
+
+```
+alter user root@localhost identified by 'my_new_passwort
+```
