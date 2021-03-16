@@ -16,6 +16,8 @@
   1. Variablen 
      * [Use-Cases Variables](variables.md) 
 
+  1. MariaDB vs. MySQL 
+     * [Comparing MySQL vs. MariaDB](mysql-vs-maridb.md) 
 
   1. Performance related aspects of the MySQL architecture  
   
