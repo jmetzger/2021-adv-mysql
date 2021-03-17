@@ -45,6 +45,13 @@ mysql>quit
   * https://jira.mariadb.org/browse/MDEV-20665
   * https://mariadb.com/kb/en/mysql_config_editor-compatibility/
 
+## How to see set password in .mylogin.cnf (unsafe) 
+
+```
+# https://www.percona.com/blog/2016/09/07/get-passwords-plain-text-mylogin-cnf/
+my_print_defaults -s client
+```
+
 ## Ref:
 
   * https://dev.mysql.com/doc/refman/8.0/en/mysql-config-editor.html
