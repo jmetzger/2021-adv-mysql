@@ -59,6 +59,13 @@ O_DIRECT
 ## Do not use  or be critical about it 
 O_DIRECT_NOI_FSYNC
 
+## Set persistent and restarte server 
+# only persist do not change during runtime 
+set persist_only innodb_flush_method = 'O_DIRECT';
+restart 
+# now it is changed 
+show variables like 'innodb_flush_method' 
+
 #### Windows 
 
 # no need to change, because O_DIRECT does not work 
