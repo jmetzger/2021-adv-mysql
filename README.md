@@ -7,7 +7,8 @@
      * [Installation from centos8/centos7](/installation/repo.md)
      * [Login ohne passwort - mysql-client](mysql-login.md) 
      * [Login with --login-path](mysql-loginpath.md)
-
+     * [Using HashiCorp-Vault for Authentication](https://www.vaultproject.io/docs/secrets/databases)
+)
   1. Configuration 
      * [Port change on Centos/Redhat](port.md)
 
