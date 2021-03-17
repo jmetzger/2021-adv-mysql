@@ -36,6 +36,7 @@
 
   1. Indexes und slow query log  
      * [slow query log](slow-query-log.md)  
+     * [Function Index](functional-index.md) 
 
   1. Documentaton 
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
