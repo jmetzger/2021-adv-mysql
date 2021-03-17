@@ -19,7 +19,19 @@ pager
 ```
 # how big is it ? 
 show variables like 'innodb_log_buffer%'
+
+## should be able to hold one commit 
+
 ```
+
+## innodb_log_file_size 
+
+```
+# Should hold work load of 120 minutes 
+```
+
+* https://www.percona.com/blog/2008/11/21/how-to-calculate-a-good-innodb-log-file-size/
+
 
 ## innodb_flush_trx_commit 
 
@@ -36,5 +48,18 @@ show variables like 'innodb_log_buffer%'
 # 0 <- is safe because of virtuell synchronisation 
 ```
 
+## innodb_flush_method  
 
+```
+#### Linux 
+O_DIRECT 
+# use only on linux,
+# can increase performance 
 
+## Do not use  or be critical about it 
+O_DIRECT_NOI_FSYNC
+
+#### Windows 
+
+# no need to change, because O_DIRECT does not work 
+```
