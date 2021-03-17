@@ -32,6 +32,7 @@
 
   1. Tools 
      * [Install percona toolkit - Centos/Redhat 8](percona-toolkit-centos.md)
+     * [Percona Monitoring and Slow Queries GUI](pmm-percona.md) 
 
   1. Documentaton 
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
