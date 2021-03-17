@@ -72,3 +72,16 @@ mysql> show variables like 'innodb_flush_method'
 
 # no need to change, because O_DIRECT does not work 
 ```
+
+## innodb_flush_neighbors 
+
+```
+# for ssd - disks keep 0 which is default
+
+# for hd - set to 1 
+# means dirty neighbor pages are flushed to disk a well from
+# innodb_buffer_pool on flushing 
+set persist innodb_flush_neighbors=1;
+
+```
+
