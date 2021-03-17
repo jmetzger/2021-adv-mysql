@@ -61,10 +61,12 @@ O_DIRECT_NOI_FSYNC
 
 ## Set persistent and restarte server 
 # only persist do not change during runtime 
-set persist_only innodb_flush_method = 'O_DIRECT';
-restart 
+mysql> set persist_only innodb_flush_method = 'O_DIRECT';
+# only works when systemd is the start/stop - system 
+# or windows ervice 
+mysql> restart 
 # now it is changed 
-show variables like 'innodb_flush_method' 
+mysql> show variables like 'innodb_flush_method' 
 
 #### Windows 
 
