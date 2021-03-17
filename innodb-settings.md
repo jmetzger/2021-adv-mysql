@@ -1,4 +1,4 @@
-# InnoDB - Settings 
+# InnoDB - Settings / Performance Settings
 
 ## innodb_buffer_pool_size 
 
@@ -85,3 +85,13 @@ set persist innodb_flush_neighbors=1;
 
 ```
 
+
+## skip-name-resolve 
+
+```
+# do not do name resolving / no local or dns lookup
+# from now on user@hostname entries do not work 
+mysql> set persist_only skip_name_resolve = ON;
+mysql> restart
+
+```
