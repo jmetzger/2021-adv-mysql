@@ -30,6 +30,13 @@
   1. Performance (InnoDB) 
      * [Important Configuration Settings-Innodb](innodb-settings.md)
 
+
+  1. Documentaton 
+     * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
+
+
+## Alternative Docs 
+
   1. Performance related aspects of the MySQL architecture  
   
      * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
