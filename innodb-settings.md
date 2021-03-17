@@ -21,4 +21,20 @@ pager
 show variables like 'innodb_log_buffer%'
 ```
 
+## innodb_flush_trx_commit 
+
+```
+# Defaults to 1 
+# flush from log_buffer to log 
+# after every commit 
+# ACID compliant
+
+# Only set to 0 or 2 if you are willing to loose 1 second of data
+# in case of Stand-Alone and Master-Slave 
+
+# On group-replication / galera cluster
+# 0 <- is safe because of virtuell synchronisation 
+```
+
+
 
