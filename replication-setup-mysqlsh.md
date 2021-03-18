@@ -24,3 +24,21 @@ dba.configureReplicaSetInstance()
 # and agree to do the changes -> Y
 # Restart : Y 
 ```
+
+## Now loging as replication user on master 
+
+```
+mysql --uri repl@master 
+dba.
+
+```
+
+## Probably if not reachable (test with telnet) setup firewalld
+
+```
+# test if ports 3306 and 33061 are reachable from outside 
+# if not 
+firewall-cmd --add-service=mysql --permanent
+firewall-cmd --add-port=33060/tcp --permanent
+firewall-cmd --reload
+```
