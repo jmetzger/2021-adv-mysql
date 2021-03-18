@@ -76,4 +76,41 @@ mysql> show global variables like '%collation%';
 | default_collation_for_utf8mb4 | utf8mb4_0900_ai_ci |
 +-------------------------------+--------------------+
 4 rows in set (0.01 sec)
+
+mysql> select tablespace_name, file_name from information_schema.files where file_type like 'UNDO LOG';
++-----------------+------------+
+| TABLESPACE_NAME | FILE_NAME  |
++-----------------+------------+
+| innodb_undo_001 | ./undo_001 |
+| innodb_undo_002 | ./undo_002 |
++-----------------+------------+
+2 rows in set (0.00 sec)
+
+
+```
+
+## Increase Verbosity 
+
+```
+# on joiner 
+mysql> set global log_error_verbosity=3 
+
+```
+
+## Setup donor list and start clone 
+
+```
+# on joiner 
+mysql> set global clone_valid_donor_list = '192.168.56.103:3306'; 
+mysql> show variables like 'clone_valid_donor_list';
+
+mysql> CLONE INSTANCE FROM 'cloneuser'@'192.168.56.103':3306 identified by 'P@ssw0rd';
+
+mysql> show variables like 'clone_valid_donor%';              
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| clone_valid_donor_list |       |
++------------------------+-------+
+ 
 ```
