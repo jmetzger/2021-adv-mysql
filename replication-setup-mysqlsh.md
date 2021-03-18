@@ -25,11 +25,12 @@ dba.configureReplicaSetInstance()
 # Restart : Y 
 ```
 
-## Now loging as replication user on master 
+## Now login in as replication user on master 
 
 ```
 mysql --uri repl@master 
-dba.
+rs=dba.createReplicaSet('MasterSlaveGroup')
+rs.status()
 
 ```
 
@@ -41,4 +42,19 @@ dba.
 firewall-cmd --add-service=mysql --permanent
 firewall-cmd --add-port=33060/tcp --permanent
 firewall-cmd --reload
+```
+
+## Setup mysqlrouter 
+
+```
+# on mysqlrouter server / same as app-server
+# set same /etc/hosts file 
+
+192.168.56.103 master.training.local master
+192.168.56.105 slave.training.local slave
+192.168.56.106 router.training.local router
+
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+yum install mysql-router mysql
+
 ```
