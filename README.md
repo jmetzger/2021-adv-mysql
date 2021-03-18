@@ -43,6 +43,7 @@
      * [clone-plugin](clone-plugin.md) 
      * [Setup Replication with GTID](replication-gtid.md)
      * [Installation Master-Slave with mysqlsh - mysql-shell](replication-setup-mysqlsh.md) 
+     * [ReplicaSet - Troubleshoot](replicaset-troubleshooting.md)
 
   1. Misc 
      * [multiple Bind-address starting from 8.0.13](https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/)
