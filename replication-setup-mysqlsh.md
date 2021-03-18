@@ -57,4 +57,15 @@ firewall-cmd --reload
 yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
 yum install mysql-router mysql
 
+mysqlrouter --bootstrap repl@slave --conf-use-sockets --user mysqlrouter
+systemctl start mysqlrouter
+
+```
+
+## Setup on master
+
+```
+# mysql 
+mysql>create user training@'192.168.56.%' identified by 'P@ssw0rd';
+mysql>grant all on *.* to training@'192.168.56.%';
 ```
