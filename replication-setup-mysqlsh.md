@@ -13,3 +13,14 @@
 yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
 yum install mysql-shell 
 ```
+
+## Configuration Basis Configuration on both servers 
+
+```
+mysqlsh --uri root@localhost 
+dba.configureReplicaSetInstance()
+# use 2 
+# setup user: repl 
+# and agree to do the changes -> Y
+# Restart : Y 
+```
