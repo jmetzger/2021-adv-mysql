@@ -42,7 +42,7 @@
      * [show slave hosts/show replicas](slaves.md) 
      * [clone-plugin](clone-plugin.md) 
      * [Setup Replication with GTID](replication-gtid.md)
-     * [Installation Master-Slave with mysqlsh - mysql-shell](replication-mysqlsh.md) 
+     * [Installation Master-Slave with mysqlsh - mysql-shell](replication-setup-mysqlsh.md) 
 
   1. Documentaton 
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
