@@ -17,3 +17,7 @@ set persist_only gtid_mode=ON;
 set persist_only enforce_gtid_consistency=true; 
 
 ```
+
+## Now setup master-connection-config 
+
+```
