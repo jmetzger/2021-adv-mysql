@@ -44,9 +44,12 @@
      * [Setup Replication with GTID](replication-gtid.md)
      * [Installation Master-Slave with mysqlsh - mysql-shell](replication-setup-mysqlsh.md) 
 
+  1. Misc 
+     * [multiple Bind-address starting from 8.0.13](https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/)
+
   1. Documentaton 
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
-
+     
 
 ## Alternative Docs 
 
