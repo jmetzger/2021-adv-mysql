@@ -41,6 +41,7 @@
   1. Replication 
      * [show slave hosts/show replicas](slaves.md) 
      * [clone-plugin](clone-plugin.md) 
+     * [Setup Replication with GTID](replication-gtid.md)
 
   1. Documentaton 
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
@@ -97,8 +98,9 @@
      
   1. Replication 
      * Performance optimization through replication 
-     * Replikation mit GTID :: https://www.admin-magazin.de/Das-Heft/2017/02/MySQL-Replikation-mit-GTIDs
+     * [Replikation mit GTID :: ](https://www.admin-magazin.de/Das-Heft/2017/02/MySQL-Replikation-mit-GTIDs)
      * Replikation Read/Write - Split: https://proxysql.com/blog/configure-read-write-split/
+     * Se
      
   1. Performance 
      * [Best Practices](/performance/best-practices.md)
