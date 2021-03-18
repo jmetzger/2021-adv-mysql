@@ -40,6 +40,7 @@
 
   1. Replication 
      * [show slave hosts/show replicas](slaves.md) 
+     * [clone-plugin](clone-plugin.md) 
 
   1. Documentaton 
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
