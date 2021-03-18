@@ -92,9 +92,45 @@ mysql> select tablespace_name, file_name from information_schema.files where fil
 ## Increase Verbosity 
 
 ```
-# on joiner 
+# on master - really important
+# because you can see the progress and return-code: success -> 0 
 mysql> set global log_error_verbosity=3 
 
+# eventually on joiner - not tested output verbosity yet 
+mysql> set global log_error_verbosity.de 
+
+```
+
+## Overview clone variables 
+
+```
+ show variables like '%clone%'
+    -> ;
++-----------------------------+---------+
+| Variable_name               | Value   |
++-----------------------------+---------+
+| clone_autotune_concurrency  | ON      |
+| clone_buffer_size           | 4194304 |
+| clone_ddl_timeout           | 300     |
+| clone_enable_compression    | OFF     |
+| clone_max_concurrency       | 16      |
+| clone_max_data_bandwidth    | 0       |
+| clone_max_network_bandwidth | 0       |
+| clone_ssl_ca                |         |
+| clone_ssl_cert              |         |
+| clone_ssl_key               |         |
+| clone_valid_donor_list      |         |
++-----------------------------+---------+
+11 rows in set (0.01 sec)
+
+
+```
+
+## Set compression on master (but takes cpu-load) 
+
+```
+# before cloning or in general 
+set global clone_enable_compression = ON
 ```
 
 ## Setup donor list and start clone 
