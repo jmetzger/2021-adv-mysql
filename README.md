@@ -50,6 +50,7 @@
 
   1. Documentaton 
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
+     * [Incompabilities from MySQL 8 to MariaDB 10.5](https://mariadb.com/kb/en/incompatibilities-and-feature-differences-between-mariadb-105-and-mysql-80/)
      
 
 ## Alternative Docs 
