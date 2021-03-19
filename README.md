@@ -55,6 +55,7 @@
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
      * [Incompabilities from MySQL 8 to MariaDB 10.5](https://mariadb.com/kb/en/incompatibilities-and-feature-differences-between-mariadb-105-and-mysql-80/)
      * [multiple Bind-address starting from 8.0.13](https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/)
-
+     * [pdf linux-security - selinux chapter](http://schulung.t3isp.de/documents/linux-security.pdf)
+     * [linux selinux type statements](https://selinuxproject.org/page/TypeStatements)
      
 
