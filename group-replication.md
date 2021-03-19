@@ -59,11 +59,16 @@ set sql_log_bin=1;
 change master to master_user='repl', master_password='P@ssw0rd' for channel 'group_replication_recovery';
 ```
 
-# Step 6: Start group replication of server 1 (bootstrap)
-
 ```
+# Step 6: Start group replication of server 1 (bootstrap)
 # within mysql - client 
 set global group_replication_bootstrap_group=on; 
 start group_replication; 
 set global group_replication_bootstrap_group=off;
 ```
+
+```
+# Step 7: Show status 
+select * from performance_schema.replication_group_members \G
+```
+
