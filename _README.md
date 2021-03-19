@@ -8,7 +8,7 @@
      * [Login ohne passwort - mysql-client](#login-ohne-passwort---mysql-client)
      * [Login with --login-path](#login-with---login-path)
   * https://www.vaultproject.io/docs/secrets/databases
-)
+
   1. Configuration 
      * [Port change on Centos/Redhat](#port-change-on-centosredhat)
 
@@ -44,13 +44,12 @@
      * [Setup Replication with GTID](#setup-replication-with-gtid)
      * [Installation Master-Slave with mysqlsh - mysql-shell](#installation-master-slave-with-mysqlsh---mysql-shell)
      * [ReplicaSet - Troubleshoot](#replicaset---troubleshoot)
-
-  1. Misc 
-  * https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/
-
+ 
   1. Documentaton 
   * http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
   * https://mariadb.com/kb/en/incompatibilities-and-feature-differences-between-mariadb-105-and-mysql-80/
+  * https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/
+
      
 
 
@@ -999,12 +998,6 @@ rs.rejoinInstance('repl@slave',{recoveryMethod: 'clone'})
 
 <div class="page-break"></div>
 
-## Misc 
-
-### multiple Bind-address starting from 8.0.13
-
-  * https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/
-
 ## Documentaton 
 
 ### MySQL Performance pdf
@@ -1014,3 +1007,7 @@ rs.rejoinInstance('repl@slave',{recoveryMethod: 'clone'})
 ### Incompabilities from MySQL 8 to MariaDB 10.5
 
   * https://mariadb.com/kb/en/incompatibilities-and-feature-differences-between-mariadb-105-and-mysql-80/
+
+### multiple Bind-address starting from 8.0.13
+
+  * https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/
