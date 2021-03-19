@@ -26,15 +26,19 @@ includedir /etc/my.cnf
 ```
 
 ```
-# Step 3 setup firewall 
+# Step 4 setup firewall 
 firewall-cmd --zone=public --list-all
 firewall-cmd --add-service=mysql --permanent 
 firewall-cmd --add-port=33060-33061/tcp --permanent
 firewall-cmd --reload 
+
+# Step 4a: selinux adjustments ports
+semanage -a -t mysqld_port_t -p tcp 33061
+
 ```
 
 ```
-# Step 4: setting z_cluster.cnf 
+# Step 5: setting z_cluster.cnf 
 [mysqld]
 
 server_id=1
@@ -95,6 +99,24 @@ rm -fR percona*
 yum install mysql-server 
 ```
 
+```
+# Start and set root pw 
+systemctl start mysqld 
+```
+
+```
+# Step 4 setup firewall 
+firewall-cmd --zone=public --list-all
+firewall-cmd --add-service=mysql --permanent 
+firewall-cmd --add-port=33060-33061/tcp --permanent
+firewall-cmd --reload 
+
+# Step 4a: selinux adjustments ports
+semanage port -a -t mysqld_port_t -p tcp 33061
+```
+
+
+
 
 ## Setup Server 3 
 
@@ -108,3 +130,21 @@ cd /etc/yum.repos.d
 rm -fR percona*
 yum install mysql-server 
 ```
+
+```
+# Start and set root pw 
+systemctl start mysqld 
+```
+
+```
+# Step 4 setup firewall 
+firewall-cmd --zone=public --list-all
+firewall-cmd --add-service=mysql --permanent 
+firewall-cmd --add-port=33060-33061/tcp --permanent
+firewall-cmd --reload 
+
+# Step 4a: selinux adjustments ports
+semanage port -a -t mysqld_port_t -p tcp 33061
+```
+
+
