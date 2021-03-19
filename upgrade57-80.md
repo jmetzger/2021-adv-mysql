@@ -88,3 +88,8 @@ tail /var/log/mysqld.log
 systemctl status mysqld 
 ```
 
+## Help for check-command 
+
+```
+MySQL  JS > \? checkForServerUpgrade
+```
