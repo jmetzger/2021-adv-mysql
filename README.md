@@ -8,7 +8,7 @@
      * [Login ohne passwort - mysql-client](mysql-login.md) 
      * [Login with --login-path](mysql-loginpath.md)
      * [Using HashiCorp-Vault for Authentication](https://www.vaultproject.io/docs/secrets/databases)
-)
+
   1. Configuration 
      * [Port change on Centos/Redhat](port.md)
 
@@ -44,12 +44,11 @@
      * [Setup Replication with GTID](replication-gtid.md)
      * [Installation Master-Slave with mysqlsh - mysql-shell](replication-setup-mysqlsh.md) 
      * [ReplicaSet - Troubleshoot](replicaset-troubleshooting.md)
-
-  1. Misc 
-     * [multiple Bind-address starting from 8.0.13](https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/)
-
+ 
   1. Documentaton 
      * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
      * [Incompabilities from MySQL 8 to MariaDB 10.5](https://mariadb.com/kb/en/incompatibilities-and-feature-differences-between-mariadb-105-and-mysql-80/)
+     * [multiple Bind-address starting from 8.0.13](https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/)
+
      
 
