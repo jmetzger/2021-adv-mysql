@@ -7,7 +7,7 @@
      * [Installation from centos8/centos7](#installation-from-centos8centos7)
      * [Login ohne passwort - mysql-client](#login-ohne-passwort---mysql-client)
      * [Login with --login-path](#login-with---login-path)
-     * https://www.vaultproject.io/docs/secrets/databases
+     * [Using HashiCorp-Vault for Authentication](https://www.vaultproject.io/docs/secrets/databases)
 
   1. Configuration 
      * [Port change on Centos/Redhat](#port-change-on-centosredhat)
@@ -53,11 +53,11 @@
      * [Upgrading from 5.7 to 8.0](#upgrading-from-5.7-to-8.0)
  
   1. Documentaton 
-     * http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
-     * https://mariadb.com/kb/en/incompatibilities-and-feature-differences-between-mariadb-105-and-mysql-80/
-     * https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/
-     * http://schulung.t3isp.de/documents/linux-security.pdf
-     * https://selinuxproject.org/page/TypeStatements
+     * [MySQL Performance pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
+     * [Incompabilities from MySQL 8 to MariaDB 10.5](https://mariadb.com/kb/en/incompatibilities-and-feature-differences-between-mariadb-105-and-mysql-80/)
+     * [multiple Bind-address starting from 8.0.13](https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/)
+     * [pdf linux-security - selinux chapter](http://schulung.t3isp.de/documents/linux-security.pdf)
+     * [linux selinux type statements](https://selinuxproject.org/page/TypeStatements)
      
 
 
