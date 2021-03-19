@@ -44,12 +44,20 @@
      * [Setup Replication with GTID](#setup-replication-with-gtid)
      * [Installation Master-Slave with mysqlsh - mysql-shell](#installation-master-slave-with-mysqlsh---mysql-shell)
      * [ReplicaSet - Troubleshoot](#replicaset---troubleshoot)
+
+  1. Group Replication/InnoDB Cluster 
+     * [group replication](#group-replication)
+     * [innodb_cluster](#innodb_cluster)
+
+  1. Upgrade / Update 
+     * [Upgrading from 5.7 to 8.0](#upgrading-from-5.7-to-8.0)
  
   1. Documentaton 
   * http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
   * https://mariadb.com/kb/en/incompatibilities-and-feature-differences-between-mariadb-105-and-mysql-80/
   * https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/
-
+  * http://schulung.t3isp.de/documents/linux-security.pdf
+  * https://selinuxproject.org/page/TypeStatements
      
 
 
@@ -998,6 +1006,408 @@ rs.rejoinInstance('repl@slave',{recoveryMethod: 'clone'})
 
 <div class="page-break"></div>
 
+## Group Replication/InnoDB Cluster 
+
+### group replication
+
+
+### Setup Server 1 
+
+```
+Step 0.5:
+yum install wget 
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+dnf remove @mysql
+dnf module reset mysql && dnf module disable mysql
+cd /etc/yum.repos.d
+rm -fR percona*
+yum install mysql-server 
+```
+```
+## Step 1: set pw 
+
+## Step 2: Get uuid for whole group 
+mysql> select uuid()
+
+## Step 3: Create /etc/my.cnf.d/z_cluster.cnf 
+## + include includedir /etc/my.cnf.d 
+## cat /etc/my.cnf
+includedir /etc/my.cnf 
+
+```
+
+```
+## Step 4 setup firewall 
+firewall-cmd --zone=public --list-all
+firewall-cmd --add-service=mysql --permanent 
+firewall-cmd --add-port=33060-33061/tcp --permanent
+firewall-cmd --reload 
+
+## Step 4a: selinux adjustments ports
+semanage -a -t mysqld_port_t -p tcp 33061
+
+```
+
+```
+## Step 5: setting z_cluster.cnf 
+[mysqld]
+
+server_id=1
+bind-address=0.0.0.0
+gtid_mode=ON
+enforce_gtid_consistency=ON
+## from 8.0.23 on, mysql understand checksum
+## so no need to set to NONE 
+## binlog_checksum=NONE
+
+plugin_load_add='group_replication.so'
+group_replication_single_primary_mode=OFF
+loose-group_replication_group_name="9d7a361f-8884-11eb-9199-525400278b50"
+loose-group_replication_start_on_boot=OFF
+loose-group_replication_local_address= "192.168.56.102:33061"
+loose-group_replication_group_seeds="192.168.56.102:33061, 192.168.56.103:33061, 192.168.56.104:33061"
+loose-group_replication_bootstrap_group=OFF
+report_host=192.168.56.102
+
+## restart 
+systemctl restart mysqld 
+
+```
+
+```
+## Step 5: Setup replication user 
+## within mysql> client
+set sql_log_bin = 0;
+create user repl@'192.168.56.%' identified by 'P@ssw0rd';
+grant replication slave on *.* to 'repl'@'192.168.56.%';
+set sql_log_bin=1;
+change master to master_user='repl', master_password='P@ssw0rd' for channel 'group_replication_recovery';
+```
+
+```
+## Step 6: Start group replication of server 1 (bootstrap)
+## within mysql - client 
+set global group_replication_bootstrap_group=on; 
+start group_replication; 
+set global group_replication_bootstrap_group=off;
+```
+
+```
+## Step 7: Show status 
+select * from performance_schema.replication_group_members \G
+```
+
+### Setup Server 2 
+
+```
+## Step 0.5:
+yum install wget 
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+dnf remove @mysql
+dnf module reset mysql && dnf module disable mysql
+cd /etc/yum.repos.d
+rm -fR percona*
+yum install mysql-server 
+```
+
+```
+## Start and set root pw 
+systemctl start mysqld 
+```
+
+```
+## Step 4 setup firewall 
+firewall-cmd --zone=public --list-all
+firewall-cmd --add-service=mysql --permanent 
+firewall-cmd --add-port=33060-33061/tcp --permanent
+firewall-cmd --reload 
+
+## Step 4a: selinux adjustments ports
+semanage port -a -t mysqld_port_t -p tcp 33061
+```
+
+
+
+
+### Setup Server 3 
+
+```
+## Step 0.5:
+yum install wget 
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+dnf remove @mysql
+dnf module reset mysql && dnf module disable mysql
+cd /etc/yum.repos.d
+rm -fR percona*
+yum install mysql-server 
+```
+
+```
+## Start and set root pw 
+systemctl start mysqld 
+```
+
+```
+## Step 4 setup firewall 
+firewall-cmd --zone=public --list-all
+firewall-cmd --add-service=mysql --permanent 
+firewall-cmd --add-port=33060-33061/tcp --permanent
+firewall-cmd --reload 
+
+## Step 4a: selinux adjustments ports
+semanage port -a -t mysqld_port_t -p tcp 33061
+```
+
+
+
+<div class="page-break"></div>
+
+### innodb_cluster
+
+
+### Pre-Requisites:
+
+```
+Install 4 Servers:
+e.g. 
+192.168.56.101  gr1.training.local gr1
+192.168.56.102  gr2.training.local gr2
+192.168.56.103  gr3.training.local gr3 
+192.168.56.104  router.training.local router 
+
+- set hostname properly for each server: 
+hostnamectl set-hostname gr1.training.local  
+
+on every server add the above configuration to the /etc/hosts 
+```
+
+
+### Step 1: Setup Server 1 
+
+```
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+yum install mysql-server mysql mysql-shell
+
+#### set firewall and selinux 
+semanage port -a -t mysqld_port_t -p tcp 33061 
+firewall-cmd --add-service=mysql
+firewall-cmd --add-port 33060-33061/tcp --permanent 
+firewall-cmd --reload 
+
+#### start and enable service 
+systemctl start mysqld
+systemctl enable mysqld
+
+## set pw 
+cat /var/log/mysqld.log | grep temp 
+mysql -p 
+mysql> create user root@localhost identified by 'P@ssw0rd'
+
+#### set firewall and selinux 
+semanage port -a -t mysqld_port_t -p tcp 33061 
+firewall-cmd --add-service=mysql
+firewall-cmd --add-port 33060-33061/tcp --permanent 
+firewall-cmd --reload 
+
+### configure the instance 
+mysqlsh --uri=root@localhost 
+JS> dba.configureInstance()
+```
+
+### Step 2: Setup Server 2 
+
+```
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+yum install mysql-server mysql mysql-shell
+
+#### set firewall and selinux 
+semanage port -a -t mysqld_port_t -p tcp 33061 
+firewall-cmd --add-service=mysql
+firewall-cmd --add-port 33060-33061/tcp --permanent 
+firewall-cmd --reload 
+
+#### start and enable service 
+systemctl start mysqld
+systemctl enable mysqld
+
+## set pw 
+cat /var/log/mysqld.log | grep temp 
+mysql -p 
+mysql> create user root@localhost identified by 'P@ssw0rd'
+
+#### set firewall and selinux 
+semanage port -a -t mysqld_port_t -p tcp 33061 
+firewall-cmd --add-service=mysql
+firewall-cmd --add-port 33060-33061/tcp --permanent 
+firewall-cmd --reload 
+
+### configure the instance 
+mysqlsh --uri=root@localhost 
+JS> dba.configureInstance()
+```
+
+### Step 3: Setup Server 3 
+
+```
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+yum install mysql-server mysql mysql-shell
+
+#### set firewall and selinux 
+semanage port -a -t mysqld_port_t -p tcp 33061 
+firewall-cmd --add-service=mysql
+firewall-cmd --add-port 33060-33061/tcp --permanent 
+firewall-cmd --reload 
+
+#### start and enable service 
+systemctl start mysqld
+systemctl enable mysqld
+
+## set pw 
+cat /var/log/mysqld.log | grep temp 
+mysql -p 
+mysql> create user root@localhost identified by 'P@ssw0rd'
+
+#### set firewall and selinux 
+semanage port -a -t mysqld_port_t -p tcp 33061 
+firewall-cmd --add-service=mysql
+firewall-cmd --add-port 33060-33061/tcp --permanent 
+firewall-cmd --reload 
+
+### configure the instance 
+mysqlsh --uri=root@localhost 
+dba.configureInstance()
+
+### --> add User -> [2]
+### clusteradmin
+### pw:  yourclusteradminpw
+ 
+```
+
+### Step 4: Setup Cluster and addInstances (on gr1- server1)  
+
+```
+mysqlsh --uri clusteradmin@gr1 
+JS> rs.dba.createCluster('devCluster')
+JS> rs.status()
+JS> rs.addInstance('clusteradmin@gr2') 
+JS> rs.addInstance('clusteradmin@gr3')
+```
+
+
+### Step 5: Setup mysqlrouter on Server 4 
+
+```
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+yum install mysql mysqlrouter
+mysqlrouter --bootstrap clusteradmin@gr2  --user mysqlrouter  --force
+systemctl start mysqlrouter 
+systemctl enable mysqlrouter 
+
+```
+
+<div class="page-break"></div>
+
+## Upgrade / Update 
+
+### Upgrading from 5.7 to 8.0
+
+
+### Step 1: For lab - starting with installing MySQL 5.7.
+
+```
+## As mysql 5.7. is not present in Centos 8 repo-rpm -file
+## Use the one for Centos 7 
+yum install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+
+## disable mysql from centos repo
+dnf remove @mysql
+dnf module reset mysql && dnf module disable mysql
+dnf config-manager --disable mysql80-community
+dnf config-manager --enable mysql57-community
+yum install mysql-community-server 
+
+## 
+systemctl start mysqld
+## get temporary pass
+cat /var/log/mysqld.log | grep temp
+mysql -p
+## Change pass in mysql 
+mysql>alter user root@localhost identified by 'mysecretpass'
+mysql_config_editor set --user=root --password
+```
+
+### Step 1b (Optiona): Install sakila
+
+```
+yum install wget 
+cd /usr/src 
+wget https://downloads.mysql.com/docs/sakila-db.tar.gz
+tar xzvf sakila-db.tar.gz 
+cd sakila-db 
+mysql < sakila-schema.sql
+mysql < sakila-data.sql 
+
+```
+
+### Step 2: Uninstall old repo and install new repo 
+
+```
+yum remove mysql80-community-release
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+```
+
+### Step 3: Install MySQL 8 - Shell 
+
+```
+yum install mysql-shell
+```
+
+### Step 4: Run checks 
+
+```
+mysqlsh 
+JS> shell.connect('root@localhost')
+JS> util.checkForServerUpgrade({configPath: '/etc/my.cnf'})
+```
+
+### Step 5: Create Backup of Data with mysqldump 
+
+```
+mysqldump --all-dabases > /usr/src/dump57.sql
+echo $? # Was dump succesful 
+```
+
+### Step 6:
+
+```
+## stop server 
+systemctl stop mysqld 
+## uninstall server 
+yum list installed | grep mysql 
+yum remove mysql-community-server 
+
+## Install new mysql 8 server 
+## works because we already have the new repo in place 
+yum install mysql-community-server 
+
+## now start the new server and see, if it will come up
+## this will be an INPLACE update, which is recommended by MySQL 
+## if everything works well the system will come up again 
+systemctl start mysqld 
+
+## look into the logs and status if mysqld is ready
+tail /var/log/mysqld.log 
+systemctl status mysqld 
+```
+
+### Help for check-command 
+
+```
+MySQL  JS > \? checkForServerUpgrade
+```
+
+<div class="page-break"></div>
+
 ## Documentaton 
 
 ### MySQL Performance pdf
@@ -1011,3 +1421,11 @@ rs.rejoinInstance('repl@slave',{recoveryMethod: 'clone'})
 ### multiple Bind-address starting from 8.0.13
 
   * https://mysqlserverteam.com/the-bind-address-option-now-supports-multiple-addresses/
+
+### pdf linux-security - selinux chapter
+
+  * http://schulung.t3isp.de/documents/linux-security.pdf
+
+### linux selinux type statements
+
+  * https://selinuxproject.org/page/TypeStatements
