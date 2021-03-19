@@ -48,3 +48,22 @@ report_host=192.168.56.102
 systemctl restart mysqld 
 
 ```
+
+```
+# Step 5: Setup replication user 
+# within mysql> client
+set sql_log_bin = 0;
+create user repl@'192.168.56.%' identified by 'P@ssw0rd';
+grant replication slave on *.* to 'repl'@'192.168.56.%';
+set sql_log_bin=1;
+change master to master_user='repl', master_password='P@ssw0rd' for channel 'group_replication_recovery';
+```
+
+# Step 6: Start group replication of server 1 (bootstrap)
+
+```
+# within mysql - client 
+set global group_replication_bootstrap_group=on; 
+start group_replication; 
+set global group_replication_bootstrap_group=off;
+```
