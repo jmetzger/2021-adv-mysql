@@ -14,7 +14,29 @@ dnf config-manager --disable mysql80-community
 dnf config-manager --enable mysql57-community
 yum install mysql-community-server 
 
+# 
+systemctl start mysqld
+# get temporary pass
+cat /var/log/mysqld.log | grep temp
+mysql -p
+# Change pass in mysql 
+mysql>alter user root@localhost identified by 'mysecretpass'
+mysql_config_editor set --user=root --password
 ```
+
+## Step 1b (Optiona): Install sakila
+
+```
+yum install wget 
+cd /usr/src 
+wget https://downloads.mysql.com/docs/sakila-db.tar.gz
+tar xzvf sakila-db.tar.gz 
+cd sakila-db 
+mysql < sakila-schema.sql
+mysql < sakila-data.sql 
+
+```
+
 ## Step 2: Uninstall old repo and install new repo 
 
 ```
