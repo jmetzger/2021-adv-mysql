@@ -47,6 +47,7 @@
 
   1. Group Replication/InnoDB Cluster 
      * [group replication](group-replication.md) 
+     * [innodb_cluster](innodb-cluster.md) 
 
   1. Upgrade / Update 
      * [Upgrading from 5.7 to 8.0](upgrade57-80.md)
