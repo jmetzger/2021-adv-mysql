@@ -10,6 +10,9 @@ yum install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
 # disable mysql from centos repo
 dnf remove @mysql
 dnf module reset mysql && dnf module disable mysql
+dnf config-manager --disable mysql80-community
+dnf config-manager --enable mysql57-community
+yum install mysql-community-server 
 
 ```
 ## Step 2: Uninstall old repo and install new repo 
