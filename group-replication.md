@@ -82,3 +82,16 @@ set global group_replication_bootstrap_group=off;
 select * from performance_schema.replication_group_members \G
 ```
 
+## Setup Server 2 
+
+```
+Step 0.5:
+yum install wget 
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+dnf remove @mysql
+dnf module reset mysql && dnf module disable mysql
+cd /etc/yum.repos.d
+rm -fR percona*
+yum install mysql-server 
+```
+
