@@ -3,6 +3,16 @@
 ## Setup Server 1 
 
 ```
+Step 0.5:
+yum install wget 
+yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+dnf remove @mysql
+dnf module reset mysql && dnf module disable mysql
+cd /etc/yum.repos.d
+rm -fR percona*
+yum install mysql-server 
+```
+```
 # Step 1: set pw 
 
 # Step 2: Get uuid for whole group 
