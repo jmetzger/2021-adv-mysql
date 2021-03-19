@@ -13,3 +13,4 @@ semanage port -a -t mysqld_port_t -p tcp 13306
 # /var/log/audit/audit.log
 
 systemctl restart mysqld 
+```
