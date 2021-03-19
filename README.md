@@ -45,6 +45,9 @@
      * [Installation Master-Slave with mysqlsh - mysql-shell](replication-setup-mysqlsh.md) 
      * [ReplicaSet - Troubleshoot](replicaset-troubleshooting.md)
 
+  1. Group Replication/InnoDB Cluster 
+     * [group replication](group-replication.md) 
+
   1. Upgrade / Update 
      * [Upgrading from 5.7 to 8.0](upgrade57-80.md)
  
