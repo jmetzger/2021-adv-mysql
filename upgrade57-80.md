@@ -40,7 +40,7 @@ mysql < sakila-data.sql
 ## Step 2: Uninstall old repo and install new repo 
 
 ```
-yum remove https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+yum remove mysql80-community-release
 yum install https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
 ```
 
